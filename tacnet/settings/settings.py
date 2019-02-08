@@ -4,6 +4,24 @@ from django.contrib.messages import constants as messages
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'tacnet.db',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'tacnet-cache'
+    }
+}
+
 
 ADMINS = (
     ('Tacnet Admins', 'forms@tacnet.io'),

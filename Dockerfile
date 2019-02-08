@@ -5,7 +5,7 @@ MAINTAINER Tacnet Team <contact@tacnet.io>
 ENV PYTHONPATH /app/
 ENV PYTHONUNBUFFERED 1
 ENV PORT 8000
-ENV ENV_CONFIG 1
+ENV ENV_CONFIG 0
 
 RUN mkdir -p /app
 COPY . /app/
@@ -17,6 +17,7 @@ RUN set -e \
 
 RUN set -e \
     && echo 'SECRET_KEY="secret"' > tacnet/settings/local.py \
-    && ENV_CONFIG=0 python manage.py collectstatic --noinput
+    && ENV_CONFIG=0 python manage.py collectstatic --noinput \
+    && ENV_CONFIG=0 python manage.py syncdb --migrate --noinput
 
 ENTRYPOINT ["uwsgi", "--ini", "tacnet.ini"]
